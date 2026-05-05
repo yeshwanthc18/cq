@@ -5,13 +5,13 @@ import FullPageSwipe from "@/components/FullPageSwipe/FullPageSwipe";
 import Services from "@/components/HomePageComponents/Services/Services";
 import PageLoader from "@/components/PageLoader/PageLoader";
 import TestimonialCarousel from "@/components/TestimonialCarousel/TestimonialCarousel";
-import WorkShowcase from "@/components/WorkShowcase/WorkShowcase";
+// import WorkShowcase from "@/components/WorkShowcase/WorkShowcase";
 import { useLenis } from "@/utils/hooks/useLenis";
 import { TestimonialType } from "@/utils/types";
 import Image from "next/image";
 import HomePage from "./(home)/page";
 import styles from "./page.module.css";
-import TeamGallery from "@/components/UI/ThreeD/TeamGallery";
+// import TeamGallery from "@/components/UI/ThreeD/TeamGallery";
 
 const sampleTestimonials: TestimonialType[] = [
   {
@@ -112,11 +112,12 @@ export default function Home() {
         />
       </div> */}
       <HomePage />
+      <FullPageSwipe />
       <Services />
       {/* <Testimonial testimonial={sampleTestimonials[0]} animated /> */}
       <TestimonialCarousel testimonials={sampleTestimonials} />
-      <FullPageSwipe />
-      <TeamGallery />
+
+      {/* <TeamGallery /> */}
       <Footer />
       {/* <AnimatedHeading /> */}
       {/* <div
