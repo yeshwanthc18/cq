@@ -11,6 +11,8 @@ import { TestimonialType } from "@/utils/types";
 import Image from "next/image";
 import HomePage from "./(home)/page";
 import styles from "./page.module.css";
+import HomeMain from "@/components/home/Home";
+import { CTASection, GoalsSection, ProblemSection, ProcessSection, ServicesPreview, ThreePillarSection, WhyChooseSection } from "@/components/home";
 // import TeamGallery from "@/components/UI/ThreeD/TeamGallery";
 
 const sampleTestimonials: TestimonialType[] = [
@@ -110,9 +112,17 @@ export default function Home() {
           className="custom-rays"
         />
       </div> */}
-      <HomePage />
-      <FullPageSwipe />
-      <Services />
+      <HomeMain />
+          <FullPageSwipe />
+
+      <ProblemSection />
+      <ServicesPreview />
+      <ThreePillarSection />
+      <GoalsSection />
+      <WhyChooseSection />
+      <ProcessSection />
+      <CTASection />
+      {/* <Services /> */}
       {/* <Testimonial testimonial={sampleTestimonials[0]} animated /> */}
       {/* <TestimonialCarousel testimonials={sampleTestimonials} /> */}
 

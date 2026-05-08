@@ -1,0 +1,9 @@
+export { default as Home } from './Home';
+export { default as HeroSection } from './HeroSection';
+export { default as ProblemSection } from './ProblemSection';
+export { default as ServicesPreview } from './ServicesPreview';
+export { default as ThreePillarSection } from './ThreePillarSection';
+export { default as GoalsSection } from './GoalsSection';
+export { default as WhyChooseSection } from './WhyChooseSection';
+export { default as ProcessSection } from './ProcessSection';
+export { default as CTASection } from './CTASection';
