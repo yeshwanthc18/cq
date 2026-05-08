@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Footer from "@/components/Footer/Footer";
+import PageLoader from "@/components/PageLoader/PageLoader";
 
 // ✅ Import Manrope from /public/fonts with all weights
 const manrope = localFont({
@@ -57,7 +59,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={manrope.variable}>
+      <PageLoader />
+
       <body>{children}</body>
+      <Footer />
     </html>
   );
 }

@@ -8,6 +8,11 @@
   font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
 }
 
+.highlighted{
+  color: #00ffef;
+  font-style: italic;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

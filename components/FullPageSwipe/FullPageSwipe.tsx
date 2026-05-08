@@ -13,7 +13,7 @@ import styles from "./FullPageSwipe.module.css";
 
 const projects = [
   { title: "Dark Ocean", subtitle: "Immersive underwater journey", img: "/images/do-homepage.png" },
-  { title: "Dekriminators", subtitle: "Pest Control Services", img: "/images/dekriminator-home.png" },
+  { title: "Dekriminators", subtitle: "Pest Control Services", img: "/images/dekriminators.png" },
   { title: "Mark Comprehensive", subtitle: "Specialized facade solutions", img: "/images/mark-com.png" },
   { title: "Jes", subtitle: "", img: "/images/jes-ai.png" },
   { title: "Elmmetric", subtitle: "AI Invoices", img: "/images/elmmetric.png" },

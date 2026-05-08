@@ -1,0 +1,113 @@
+.process {
+  border-bottom: 1px solid var(--border);
+}
+.process-timeline {
+  margin-top: 3rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Scroll-reveal base state --- */
+.process-step {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-left: 2px solid var(--border);
+  padding-left: 2rem;
+  position: relative;
+
+  /* Hidden by default */
+  opacity: 0;
+  transform: translateX(-32px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+/* Visible state — added by IntersectionObserver */
+.process-step.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Dot on the timeline */
+.process-step::before {
+  content: '';
+  position: absolute;
+  left: -9px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(0, 255, 239, 0.4);
+
+  /* Also animate the dot */
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    opacity 0.4s ease 0.3s,
+    transform 0.4s ease 0.3s;
+}
+
+.process-step.is-visible::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.step-number {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: rgba(0, 255, 239, 0.15);
+}
+.step-content {
+  padding: 0;
+}
+.step-title {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+.step-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--cream);
+  opacity: 0.85;
+}
+.step-divider {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .process-step {
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+  .step-number {
+    font-size: 1.3rem;
+  }
+  .step-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .process-step {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+  .step-number {
+    font-size: 1.2rem;
+    opacity: 0.6;
+  }
+  .process-timeline {
+    max-width: 100%;
+  }
+}

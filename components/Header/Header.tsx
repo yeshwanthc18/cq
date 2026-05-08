@@ -2,6 +2,7 @@ import { useRef } from "react";
 import TopNav from "../UI/TopNav/TopNav";
 import styles from "./Header.module.css";
 import { usePageLoaderStore } from "@/utils/hooks/usePageLoader";
+import Link from "next/link";
 
 const Header = () => {
   const { isPageLoaded } = usePageLoaderStore();
@@ -50,7 +51,9 @@ const Header = () => {
           : {}
       }
     >
-      <img src={`/icons/cq-logo-full.png`} alt="Crayon & Quill" />
+      <Link href="/">
+        <img src={`/icons/cq-logo-full.png`} alt="Crayon & Quill" />
+      </Link>
       <TopNav onHamburgerOpen={(_) => {}} />
     </header>
   );

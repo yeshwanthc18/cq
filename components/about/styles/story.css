@@ -1,0 +1,130 @@
+.story {
+  position: relative;
+  padding: 6rem 6vw;
+  border-bottom: 1px solid var(--border);
+  z-index: 1;
+}
+
+.story__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.story__left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.story__heading {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--cream);
+}
+
+.story__heading em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.story__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.story__body p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(232, 240, 240, 0.75);
+  margin: 0;
+}
+
+.story__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.story__founded {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.story__founded-year {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--gold);
+}
+
+.story__founded-label {
+  font-family: monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ────── RESPONSIVE ────── */
+
+@media (max-width: 1024px) {
+  .story__grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .story__right {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .story {
+    padding: 4rem 4vw;
+  }
+
+  .story__heading {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+
+  .story__body p {
+    font-size: 0.95rem;
+  }
+
+  .story__founded {
+    padding: 2rem;
+  }
+
+  .story__founded-year {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .story {
+    padding: 3rem 4vw;
+  }
+
+  .story__heading {
+    font-size: 1.8rem;
+  }
+
+  .story__body p {
+    font-size: 0.9rem;
+  }
+}

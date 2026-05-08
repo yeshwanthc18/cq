@@ -1,4 +1,5 @@
-// components/PageLoader.tsx
+"use client"// components/PageLoader.tsx
+
 import { useEffect, useState } from "react";
 import styles from "./PageLoader.module.css";
 import { usePageLoaderStore } from "@/utils/hooks/usePageLoader";

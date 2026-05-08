@@ -18,8 +18,8 @@ const NAV_ANIMATION = {
 const navLinks = [
   { path: "/about", label: "About Us" },
   { path: "/services", label: "Services" },
+  { path: "/projects", label: "Projects" },
   { path: "/contact", label: "Contact" },
-  { path: "/career", label: "Career" },
 ];
 
 const TopNav: React.FC<{ onHamburgerOpen: (isOpen: boolean) => void }> = ({
@@ -67,16 +67,18 @@ const TopNav: React.FC<{ onHamburgerOpen: (isOpen: boolean) => void }> = ({
           isOpen
             ? NAV_ANIMATION.open
             : isPhoneScreen
-            ? NAV_ANIMATION.closed
-            : {}
+              ? NAV_ANIMATION.closed
+              : {}
         }
         transition={{ duration: 0.7 }}
-        onClick={() => setIsOpen(false)}
-        ref={navRef}
+        // onClick={() => setIsOpen(false)}
+        // ref={navRef}
       >
         <ul style={{ color: "white" }}>
           {navLinks.map((navItem, index) => (
-            <li key={index}>{navItem.label}</li>
+            <li key={index}>
+              <a href={navItem.path}> {navItem.label}</a>
+            </li>
           ))}
         </ul>
       </motion.nav>

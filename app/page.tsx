@@ -85,7 +85,6 @@ export default function Home() {
 
   return (
     <>
-      <PageLoader />
       {/* <div
         style={{
           width: "100%",
@@ -115,10 +114,10 @@ export default function Home() {
       <FullPageSwipe />
       <Services />
       {/* <Testimonial testimonial={sampleTestimonials[0]} animated /> */}
-      <TestimonialCarousel testimonials={sampleTestimonials} />
+      {/* <TestimonialCarousel testimonials={sampleTestimonials} /> */}
 
       {/* <TeamGallery /> */}
-      <Footer />
+    
       {/* <AnimatedHeading /> */}
       {/* <div
         style={{
