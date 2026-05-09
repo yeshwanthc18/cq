@@ -1,28 +1,148 @@
+/* =========================================================
+   HEADER
+========================================================= */
+
 .Header {
-  /* position: fixed;
-  top: 0; */
   box-sizing: border-box;
-  height: 8vh;
-  width: 100vw;
+
+  width: 100%;
+  height: 88px;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 var(--spacing);
-  background-color: transparent;
-  backdrop-filter: blur(10px);
+  justify-content: center;
+
+  padding: 0 1.5rem;
+
   z-index: 1000;
-  border-bottom: 0.1px solid rgba(255, 255, 255, 0.1);
+
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    height 0.35s ease,
+    backdrop-filter 0.35s ease,
+    box-shadow 0.35s ease;
+
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+
   pointer-events: auto;
 }
 
-.Header a {
-  display: flex;
-  align-items: center;
+/* =========================================================
+   SCROLLED STATE
+========================================================= */
+
+.HeaderScrolled {
+  background:
+    rgba(6, 6, 8, 0.72);
+
+  backdrop-filter: blur(18px);
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.06);
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.18);
+
+  height: 76px;
 }
 
-.Header img {
-  width: 12rem;
+/* =========================================================
+   INNER
+========================================================= */
+
+.HeaderInner {
+  width: 100%;
+  max-width: 1440px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 2rem;
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.Logo {
+  display: inline-flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  text-decoration: none;
+}
+
+.Logo img {
+  width: clamp(9rem, 12vw, 12rem);
+  height: auto;
+
+  object-fit: contain;
+
   cursor: pointer;
+
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+.Logo:hover img {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1024px) {
+  .Header {
+    height: 82px;
+    padding: 0 1.25rem;
+  }
+
+  .HeaderScrolled {
+    height: 72px;
+  }
+
+  .Logo img {
+    width: 10rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .Header {
+    height: 74px;
+    padding: 0 1rem;
+  }
+
+  .HeaderScrolled {
+    height: 68px;
+  }
+
+  .HeaderInner {
+    gap: 1rem;
+  }
+
+  .Logo img {
+    width: 8.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .Header {
+    height: 68px;
+    padding: 0 0.9rem;
+  }
+
+  .HeaderScrolled {
+    height: 64px;
+  }
+
+  .Logo img {
+    width: 7.8rem;
+  }
 }

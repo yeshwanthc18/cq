@@ -12,7 +12,15 @@ import Image from "next/image";
 import HomePage from "./(home)/page";
 import styles from "./page.module.css";
 import HomeMain from "@/components/home/Home";
-import { CTASection, GoalsSection, ProblemSection, ProcessSection, ServicesPreview, ThreePillarSection, WhyChooseSection } from "@/components/home";
+import {
+  CTASection,
+  GoalsSection,
+  ProblemSection,
+  ProcessSection,
+  ServicesPreview,
+  ThreePillarSection,
+  WhyChooseSection,
+} from "@/components/home";
 // import TeamGallery from "@/components/UI/ThreeD/TeamGallery";
 
 const sampleTestimonials: TestimonialType[] = [
@@ -113,7 +121,7 @@ export default function Home() {
         />
       </div> */}
       <HomeMain />
-          <FullPageSwipe />
+      <FullPageSwipe />
 
       <ProblemSection />
       <ServicesPreview />
@@ -127,7 +135,7 @@ export default function Home() {
       {/* <TestimonialCarousel testimonials={sampleTestimonials} /> */}
 
       {/* <TeamGallery /> */}
-    
+
       {/* <AnimatedHeading /> */}
       {/* <div
         style={{

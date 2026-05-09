@@ -1,45 +1,41 @@
-import { useRef } from "react";
-import TopNav from "../UI/TopNav/TopNav";
-import styles from "./Header.module.css";
-import { usePageLoaderStore } from "@/utils/hooks/usePageLoader";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+
+import TopNav from "../UI/TopNav/TopNav";
+
+import styles from "./Header.module.css";
+
+import { usePageLoaderStore } from "@/utils/hooks/usePageLoader";
 
 const Header = () => {
   const { isPageLoaded } = usePageLoaderStore();
+
   const headerRef = useRef<HTMLElement>(null);
 
-  // const getImgLink = (pageName: string) => {
-  //   if (
-  //     pageName.startsWith("/press-release") ||
-  //     pageName.startsWith("/case-study")
-  //   ) {
-  //     return "dark-ocean-logo-blue";
-  //   }
+  const [scrolled, setScrolled] = useState(false);
 
-  //   switch (pageName) {
-  //     case "/about":
-  //       return "dark-ocean-logo-blue";
-  //     default:
-  //       return "dark-ocean-logo";
-  //   }
-  // };
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
 
-  // useEffect(() => {
-  //   if (isPageLoaded) {
-  //     setTimeout(() => {
-  //       if (!headerRef.current) return;
+    handleScroll();
 
-  //       headerRef.current.style.visibility = loaderHeader
-  //         ? "hidden"
-  //         : "visible";
-  //     }, 500);
-  //   }
-  // }, [isPageLoaded]);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <header
       ref={headerRef}
-      className={styles.Header}
+      className={`${styles.Header} ${
+        scrolled ? styles.HeaderScrolled : ""
+      }`}
       style={
         isPageLoaded
           ? {
@@ -51,10 +47,16 @@ const Header = () => {
           : {}
       }
     >
-      <Link href="/">
-        <img src={`/icons/cq-logo-full.png`} alt="Crayon & Quill" />
-      </Link>
-      <TopNav onHamburgerOpen={(_) => {}} />
+      <div className={styles.HeaderInner}>
+        <Link href="/" className={styles.Logo}>
+          <img
+            src="/icons/cq-logo-full.png"
+            alt="Crayon & Quill"
+          />
+        </Link>
+
+        <TopNav onHamburgerOpen={(_) => {}} />
+      </div>
     </header>
   );
 };

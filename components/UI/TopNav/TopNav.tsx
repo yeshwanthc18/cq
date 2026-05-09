@@ -1,87 +1,184 @@
-import { motion } from "framer-motion";
+"use client";
+
+import Link from "next/link";
+
+import { AnimatePresence, motion } from "framer-motion";
+
 import Hamburger from "hamburger-react";
-import { useRef, useState } from "react";
+
+import { useEffect, useState } from "react";
+
+import { ArrowUpRight } from "lucide-react";
+
 import styles from "./TopNav.module.css";
+
 import useIsPhoneScreen from "@/utils/hooks/useIsPhoneScreen";
 
-const NAV_ANIMATION = {
-  closed: {
-    width: "100vw",
-    transform: "translate3d(0,-200%,0)",
-  },
-  open: {
-    width: "100vw",
-    transform: "translate3d(0,0,0)",
-  },
-};
-
 const navLinks = [
-  { path: "/about", label: "About Us" },
+  { path: "/about", label: "About" },
   { path: "/services", label: "Services" },
   { path: "/projects", label: "Projects" },
   { path: "/contact", label: "Contact" },
 ];
 
-const TopNav: React.FC<{ onHamburgerOpen: (isOpen: boolean) => void }> = ({
+const TopNav = ({
   onHamburgerOpen,
+}: {
+  onHamburgerOpen: (isOpen: boolean) => void;
 }) => {
-  const navRef = useRef<HTMLElement | null>(null);
   const isPhoneScreen = useIsPhoneScreen();
+
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleHamburgerClick = () => {
-    setIsOpen((prev) => {
-      onHamburgerOpen(!prev);
-      return !prev;
-    });
+  useEffect(() => {
+    document.body.style.overflow = isOpen
+      ? "hidden"
+      : "auto";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
+  const handleToggle = (toggled: boolean) => {
+    setIsOpen(toggled);
+    onHamburgerOpen(toggled);
   };
 
   return (
     <>
+      {/* =========================
+          DESKTOP
+      ========================== */}
+
+      {!isPhoneScreen && (
+        <nav className={styles.Nav}>
+          <ul>
+            {navLinks.map((item) => (
+              <li key={item.path}>
+                <Link href={item.path}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <Link
+            href="/contact"
+            className={styles.cta}
+          >
+            Start Project
+            <ArrowUpRight size={16} />
+          </Link>
+        </nav>
+      )}
+
+      {/* =========================
+          MOBILE HAMBURGER
+      ========================== */}
+
       {isPhoneScreen && (
-        <div
-          style={{
-            marginLeft: "auto",
-            width: "100%",
-            display: "flex",
-            justifyContent: "end",
-            zIndex: 10000,
-          }}
-        >
+        <div className={styles.MobileHamburger}>
           <Hamburger
             toggled={isOpen}
-            direction="right"
-            size={28}
-            duration={0.7}
+            toggle={handleToggle}
+            size={24}
             rounded
-            onToggle={handleHamburgerClick}
-            color={"white"}
+            duration={0.4}
+            color="#ffffff"
           />
         </div>
       )}
 
-      <motion.nav
-        className={styles.Nav}
-        initial={isPhoneScreen ? NAV_ANIMATION.closed : {}}
-        animate={
-          isOpen
-            ? NAV_ANIMATION.open
-            : isPhoneScreen
-              ? NAV_ANIMATION.closed
-              : {}
-        }
-        transition={{ duration: 0.7 }}
-        // onClick={() => setIsOpen(false)}
-        // ref={navRef}
-      >
-        <ul style={{ color: "white" }}>
-          {navLinks.map((navItem, index) => (
-            <li key={index}>
-              <a href={navItem.path}> {navItem.label}</a>
-            </li>
-          ))}
-        </ul>
-      </motion.nav>
+      {/* =========================
+          MOBILE MENU
+      ========================== */}
+
+      <AnimatePresence>
+        {isPhoneScreen && isOpen && (
+          <motion.div
+            className={styles.MobileMenu}
+            initial={{
+              opacity: 0,
+              y: "-100%",
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            exit={{
+              opacity: 0,
+              y: "-100%",
+            }}
+            transition={{
+              duration: 0.45,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            {/* Background Glow */}
+            <div className={styles.glow1} />
+            <div className={styles.glow2} />
+
+            {/* Menu Links */}
+            <div className={styles.MobileMenuInner}>
+              <ul className={styles.MobileLinks}>
+                {navLinks.map((item, index) => (
+                  <motion.li
+                    key={item.path}
+                    initial={{
+                      opacity: 0,
+                      y: 40,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    transition={{
+                      delay: index * 0.08,
+                    }}
+                  >
+                    <Link
+                      href={item.path}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <span>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      {item.label}
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+
+              <motion.div
+                className={styles.MobileBottom}
+                initial={{
+                  opacity: 0,
+                  y: 30,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  delay: 0.4,
+                }}
+              >
+                <Link
+                  href="/contact"
+                  className={styles.MobileCTA}
+                  onClick={() => setIsOpen(false)}
+                >
+                  <span>Let&apos;s Build Something</span>
+
+                  <ArrowUpRight size={18} />
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
