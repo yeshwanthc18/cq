@@ -121,7 +121,7 @@ export default function Home() {
         />
       </div> */}
       <HomeMain />
-      <FullPageSwipe />
+      {/* <FullPageSwipe /> */}
 
       <ProblemSection />
       <ServicesPreview />

@@ -81,7 +81,7 @@ const TopNav = ({
         <div className={styles.MobileHamburger}>
           <Hamburger
             toggled={isOpen}
-            // toggle={handleToggle}
+            toggle={handleToggle}
             size={24}
             rounded
             duration={0.4}

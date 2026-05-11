@@ -7,11 +7,9 @@ import {
   useSpring,
   MotionValue,
 } from "framer-motion";
-
 import Image from "next/image";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
-
 import styles from "./FullPageSwipe.module.css";
 
 const projects = [
@@ -82,61 +80,50 @@ function totalUnits(n: number) {
 
 /* =========================================================
    PROJECT CARD
+   Receives the single smoothed MotionValue from the parent.
+   No spring created here — just transforms.
 ========================================================= */
-
 function ProjectCard({
   project,
   idx,
   cardCount,
-  scrollYProgress,
+  smoothProgress,
 }: {
   project: (typeof projects)[number];
   idx: number;
   cardCount: number;
-  scrollYProgress: MotionValue<number>;
+  smoothProgress: MotionValue<number>;
 }) {
   const total = totalUnits(cardCount);
 
   const enterStart = (idx * (DWELL + SLIDE)) / total;
-  const enterEnd = (idx * (DWELL + SLIDE) + SLIDE) / total;
+  const enterEnd   = (idx * (DWELL + SLIDE) + SLIDE) / total;
+  const exitStart  = (idx * (DWELL + SLIDE) + SLIDE + DWELL) / total;
+  const exitEnd    = ((idx + 1) * (DWELL + SLIDE)) / total;
 
-  const exitStart =
-    (idx * (DWELL + SLIDE) + SLIDE + DWELL) / total;
-
-  const exitEnd = ((idx + 1) * (DWELL + SLIDE)) / total;
-
-  const rawX = useTransform(
-    scrollYProgress,
+  const x = useTransform(
+    smoothProgress,
     [enterStart, enterEnd, exitStart, exitEnd],
     ["100vw", "0vw", "0vw", "-100vw"]
   );
 
-  const x = useSpring(rawX, {
-    stiffness: 60,
-    damping: 18,
-    mass: 0.6,
-  });
-
   const opacity = useTransform(
-    scrollYProgress,
+    smoothProgress,
     [enterStart, enterEnd, exitStart, exitEnd],
     [0, 1, 1, 0]
   );
 
   const scale = useTransform(
-    scrollYProgress,
+    smoothProgress,
     [enterStart, enterEnd, exitStart, exitEnd],
     [0.96, 1, 1, 0.96]
   );
 
-  const zIndex = useTransform<number, number>(
-    scrollYProgress,
-    (v) => {
-      if (v >= enterEnd && v <= exitStart) return 20;
-      if (v >= enterStart && v <= exitEnd) return 10;
-      return 1;
-    }
-  );
+  const zIndex = useTransform(smoothProgress, (v: number): number => {
+    if (v >= enterEnd && v <= exitStart) return 20;
+    if (v >= enterStart && v <= exitEnd) return 10;
+    return 1;
+  });
 
   return (
     <motion.div
@@ -161,10 +148,7 @@ function ProjectCard({
       {/* Content */}
       <div className={styles.content}>
         <div className={styles.top}>
-          <span className={styles.category}>
-            {project.category}
-          </span>
-
+          <span className={styles.category}>{project.category}</span>
           <span className={styles.counter}>
             {String(idx + 1).padStart(2, "0")} /{" "}
             {String(cardCount).padStart(2, "0")}
@@ -172,13 +156,8 @@ function ProjectCard({
         </div>
 
         <div className={styles.textContent}>
-          <h2 className={styles.title}>
-            {project.title}
-          </h2>
-
-          <p className={styles.subtitle}>
-            {project.subtitle}
-          </p>
+          <h2 className={styles.title}>{project.title}</h2>
+          <p className={styles.subtitle}>{project.subtitle}</p>
         </div>
 
         <a
@@ -188,7 +167,6 @@ function ProjectCard({
           className={styles.btn}
         >
           <span>View Project</span>
-
           <ArrowUpRight size={18} />
         </a>
       </div>
@@ -212,8 +190,8 @@ function ProjectCard({
 
 /* =========================================================
    MAIN COMPONENT
+   ONE spring created here, shared across all cards.
 ========================================================= */
-
 export default function FullPageSwipe() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -222,33 +200,21 @@ export default function FullPageSwipe() {
     offset: ["start start", "end end"],
   });
 
+  // ✅ Spring created ONCE here — all cards share this single smoothed value
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 20,
+    mass: 0.5,
+  });
+
   const cardCount = projects.length;
 
   return (
     <section className={styles.section}>
-      {/* Header */}
-      {/* <div className={styles.header}>
-        <p className={styles.label}>Our Projects</p>
-
-        <h2 className={styles.heading}>
-          Building digital experiences that{" "}
-          <span>perform beautifully</span>
-        </h2>
-
-        <p className={styles.description}>
-          From AI platforms and modern SaaS products to
-          architecture, branding, and service businesses —
-          we create scalable experiences built for impact.
-        </p>
-      </div> */}
-
-      {/* Scroll Section */}
       <div
         className={styles.outer}
         ref={containerRef}
-        style={{
-          height: `${totalUnits(cardCount) * 100}vh`,
-        }}
+        style={{ height: `${totalUnits(cardCount) * 100}vh` }}
       >
         <div className={styles.clip}>
           <div className={styles.sticky}>
@@ -258,7 +224,7 @@ export default function FullPageSwipe() {
                 project={project}
                 idx={idx}
                 cardCount={cardCount}
-                scrollYProgress={scrollYProgress}
+                smoothProgress={smoothProgress}
               />
             ))}
           </div>

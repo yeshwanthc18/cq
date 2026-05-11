@@ -1,9 +1,18 @@
+.section {
+  width: 100%;
+  background: #060608;
+}
+
 .outer {
   position: relative;
   background: #060608;
 }
 
-
+/*
+  sticky + overflow:hidden = the viewport clip.
+  Cards slide in from 100vw — without overflow:hidden
+  they create a horizontal scrollbar and look broken.
+*/
 .clip {
   position: sticky;
   top: 0;
@@ -11,12 +20,21 @@
   overflow: hidden;
 }
 
+/*
+  The stage that fills the sticky clip.
+  Cards are absolute children, so they all overlap.
+*/
 .sticky {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
+/*
+  MUST be position:absolute so all cards stack on the
+  same spot. Without this, cards sit in normal flow and
+  appear to "fly from top" as scroll pushes them down.
+*/
 .card {
   position: absolute;
   inset: 0;
@@ -64,20 +82,40 @@
   flex-direction: column;
 }
 
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+
+.category {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  color: rgba(0, 255, 255, 0.55);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
 .counter {
   font-size: 0.68rem;
   letter-spacing: 0.3em;
   color: rgba(0, 255, 255, 0.6);
   text-transform: uppercase;
-  margin-bottom: 1.1rem;
   font-weight: 400;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.2rem;
 }
 
 .title {
   font-size: clamp(2.8rem, 5.5vw, 4.2rem);
   font-weight: 700;
   color: #f0ede8;
-  line-height: 1.0;
+  line-height: 1;
   margin: 0 0 1rem;
   letter-spacing: -0.03em;
 }
@@ -85,7 +123,7 @@
 .subtitle {
   font-size: 0.92rem;
   color: rgba(255, 255, 255, 0.42);
-  margin: 0 0 2.2rem;
+  margin: 0;
   line-height: 1.65;
   font-weight: 300;
   max-width: 300px;
@@ -105,6 +143,7 @@
   cursor: pointer;
   border-radius: 2px;
   width: fit-content;
+  text-decoration: none;
   transition: border-color 0.25s ease, background 0.25s ease, gap 0.25s ease;
 }
 
@@ -112,15 +151,6 @@
   border-color: rgba(0, 255, 255, 0.5);
   background: rgba(0, 255, 255, 0.05);
   gap: 1rem;
-}
-
-.arrow {
-  display: inline-block;
-  transition: transform 0.25s ease;
-}
-
-.btn:hover .arrow {
-  transform: translateX(4px);
 }
 
 .dots {
@@ -152,6 +182,11 @@
     padding: 0 1.8rem;
     align-items: center;
     text-align: center;
+    max-width: 100%;
+  }
+
+  .top {
+    width: 100%;
   }
 
   .subtitle {
