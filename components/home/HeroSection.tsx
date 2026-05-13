@@ -6,6 +6,7 @@ import {
   ArrowRight,
   Play,
   ChevronDown,
+  Sparkles,
 } from 'lucide-react';
 
 import './styles/hero.css';
@@ -13,7 +14,7 @@ import './styles/hero.css';
 export default function HeroSection() {
   return (
     <section className="hero-home">
-      {/* VIDEO */}
+      {/* BACKGROUND VIDEO */}
 
       <video
         className="hero-home__video"
@@ -29,36 +30,36 @@ export default function HeroSection() {
         />
       </video>
 
-      {/* OVERLAY */}
+      {/* OVERLAYS */}
 
       <div className="hero-home__overlay" />
-
-      {/* GRID */}
-
+      <div className="hero-home__noise" />
       <div className="hero-home__grid" />
 
-      {/* GLOW */}
+      {/* GLOWS */}
 
       <div className="hero-home__glow hero-home__glow--1" />
-
       <div className="hero-home__glow hero-home__glow--2" />
 
-      {/* CONTENT */}
+      {/* MAIN */}
 
       <div className="hero-home__container">
         {/* LEFT */}
 
         <div className="hero-home__left">
           <div className="hero-home__badge fade-up">
-            <span className="hero-home__badge-dot" />
+            <Sparkles size={14} />
 
-            Building Business Intelligent
-            Sustainable Enterprises
+            Building Intelligent Digital
+            Enterprises
           </div>
 
           <h1 className="hero-home__title fade-up delay-1">
-            From Clicks to{' '}
+            From Clicks
+            <br />
+            to
             <span className="gradient-text">
+              {' '}
               Connections
             </span>
           </h1>
@@ -92,7 +93,7 @@ export default function HeroSection() {
             </Link>
           </div>
 
-          {/* TAGS */}
+          {/* BOTTOM TAGS */}
 
           <div className="hero-home__tags fade-up delay-3">
             <div className="hero-home__tag">
@@ -111,40 +112,76 @@ export default function HeroSection() {
 
         {/* RIGHT */}
 
-        <div className="hero-home__right">
-          <div className="hero-home__stats">
-            <div className="hero-stat fade-up delay-2">
-              <div className="hero-stat__number">
-                85%
-              </div>
+       <div className="hero-home__right">
+  <div className="hero-dashboard fade-up delay-2">
 
-              <div className="hero-stat__label">
-                Campaign success rate
-              </div>
-            </div>
+    {/* MAIN VIDEO PANEL */}
 
-            <div className="hero-stat fade-up delay-3">
-              <div className="hero-stat__number">
-                20+
-              </div>
+    <div className="hero-dashboard__main">
+      <video
+        className="hero-dashboard__video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+      >
+        <source
+          src="/videos/cq-logo.mp4"
+          type="video/mp4"
+        />
+      </video>
 
-              <div className="hero-stat__label">
-                Brands transformed
-              </div>
-            </div>
+      <div className="hero-dashboard__overlay" />
 
-            <div className="hero-stat hero-stat--wide fade-up delay-3">
-              <div className="hero-stat__number">
-                4x
-              </div>
+      <div className="hero-dashboard__content">
+        <span className="hero-dashboard__eyebrow">
+          Strategy • AI • Growth
+        </span>
 
-              <div className="hero-stat__label">
-                Average engagement
-                growth
-              </div>
-            </div>
-          </div>
-        </div>
+        <h3 className="hero-dashboard__title">
+          Timeless
+          <br />
+          Marketing
+        </h3>
+
+        <p className="hero-dashboard__text">
+          Intelligent systems built for
+          modern brands that want
+          clarity, momentum, and scale.
+        </p>
+      </div>
+    </div>
+
+    {/* FLOATING SMALL CARD */}
+
+    <div className="hero-mini-card hero-mini-card--1">
+      <span className="hero-mini-card__label">
+        Growth Rate
+      </span>
+
+      <strong>+248%</strong>
+    </div>
+
+    {/* FLOATING PERFORMANCE */}
+
+    <div className="hero-mini-card hero-mini-card--2">
+      <span className="hero-mini-card__label">
+        Performance
+      </span>
+
+      <div className="hero-mini-progress">
+        <span />
+      </div>
+    </div>
+
+    {/* FLOATING TAG */}
+
+    <div className="hero-dashboard__tag">
+      AI-Led Systems
+    </div>
+  </div>
+</div>
       </div>
 
       {/* SCROLL */}
