@@ -1,8 +1,10 @@
-import { Projects } from "@/components/projects";
-import React from "react";
+import { Projects } from '@/components/projects';
 
-const page = () => {
-  return <Projects />;
+export const metadata = {
+  title: 'Projects - Crayon & Quill',
+  description: 'View our portfolio of successful marketing campaigns and case studies.',
 };
 
-export default page;
+export default function ProjectsPage() {
+  return <Projects />;
+}

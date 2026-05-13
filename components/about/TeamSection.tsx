@@ -42,7 +42,7 @@ const TEAM_MEMBERS = [
     id: 6,
     name: "Likith",
     role: "SEO Lead",
-    image: "/team/likith.png",
+    image: "/team/likith.jpg",
     bio: "Improves search visibility, organic traffic, technical optimization, and performance-driven SEO growth strategies.",
   },
   {
@@ -55,7 +55,7 @@ const TEAM_MEMBERS = [
   id: 8,
   name: "Anil",
   role: "Office Admin",
-  image: "/team/anil.jpg",
+  image: "/team/anil.jpeg",
   bio: "Manages daily operations, and ensures smooth office functionality.",
 }
 ];

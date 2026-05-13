@@ -62,6 +62,9 @@ const services = [
 export default function ServicesPreview() {
   return (
     <section className="services-preview">
+      <div className="services-preview__bg-grid" />
+      <div className="services-preview__noise" />
+
       <div className="services-preview__container">
         <div className="services-preview__header">
           <p className="section-label">Services</p>
@@ -71,8 +74,8 @@ export default function ServicesPreview() {
           </h2>
 
           <p className="services-preview__subtitle">
-            Full-funnel digital solutions built to scale brands, increase
-            visibility, and drive measurable growth.
+            Full-funnel digital solutions built to scale brands,
+            increase visibility, and drive measurable growth.
           </p>
         </div>
 
@@ -82,6 +85,8 @@ export default function ServicesPreview() {
               key={service.id}
               className={`service-card fade-in-up stagger-${(idx % 5) + 1}`}
             >
+              <div className="service-card__glow" />
+
               <div className="service-card__top">
                 <div className="service-card__icon">
                   {service.icon}
@@ -105,7 +110,10 @@ export default function ServicesPreview() {
               <div className="service-card__bottom">
                 <div className="service-card__services">
                   {service.services.map((svc, sidx) => (
-                    <span key={sidx} className="service-tag">
+                    <span
+                      key={sidx}
+                      className="service-tag"
+                    >
                       {svc}
                     </span>
                   ))}
@@ -113,7 +121,11 @@ export default function ServicesPreview() {
 
                 <button className="service-card__link">
                   <span>Learn More</span>
-                  <ArrowUpRight size={16} />
+
+                  <ArrowUpRight
+                    size={16}
+                    strokeWidth={2}
+                  />
                 </button>
               </div>
             </article>

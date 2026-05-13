@@ -36,7 +36,7 @@ export default function HeroSection() {
       <div className="hero-home__content">
         <div className="hero-home__badge fade-up">
           <span className="hero-home__badge-dot" />
-          Creative Marketing Agency
+          Building Intelligent Systems
         </div>
 
         <h1 className="hero-home__title fade-up delay-1">

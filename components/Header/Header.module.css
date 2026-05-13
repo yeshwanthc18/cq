@@ -4,29 +4,18 @@
 
 .Header {
   box-sizing: border-box;
-
   width: 100%;
-  height: 88px;
-
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 0 1.5rem;
-
   z-index: 1000;
-
-  transition:
-    background 0.35s ease,
-    border-color 0.35s ease,
-    height 0.35s ease,
-    backdrop-filter 0.35s ease,
-    box-shadow 0.35s ease;
-
+  transition: all 0.35s ease;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-
   pointer-events: auto;
+  background: rgba(6, 6, 8, 0.5);
 }
 
 /* =========================================================
@@ -34,18 +23,11 @@
 ========================================================= */
 
 .HeaderScrolled {
-  background:
-    rgba(6, 6, 8, 0.72);
-
+  background: rgba(6, 6, 8, 0.85);
   backdrop-filter: blur(18px);
-
-  border-bottom:
-    1px solid rgba(255, 255, 255, 0.06);
-
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.18);
-
-  height: 76px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  height: 72px;
 }
 
 /* =========================================================
@@ -55,12 +37,11 @@
 .HeaderInner {
   width: 100%;
   max-width: 1440px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 2rem;
+  padding: 0 1rem;
 }
 
 /* =========================================================
@@ -70,53 +51,32 @@
 .Logo {
   display: inline-flex;
   align-items: center;
-
   flex-shrink: 0;
-
   text-decoration: none;
+  transition: opacity 0.3s ease;
 }
 
 .Logo img {
-  width: clamp(9rem, 12vw, 12rem);
-  height: auto;
-
+  height: 40px;
+  width: auto;
   object-fit: contain;
-
   cursor: pointer;
-
-  transition:
-    transform 0.35s ease,
-    opacity 0.35s ease;
+  transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
 .Logo:hover img {
-  transform: translateY(-1px);
-  opacity: 0.92;
+  transform: translateY(-2px);
+  opacity: 0.9;
 }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE - TABLET
 ========================================================= */
 
 @media (max-width: 1024px) {
   .Header {
-    height: 82px;
+    height: 76px;
     padding: 0 1.25rem;
-  }
-
-  .HeaderScrolled {
-    height: 72px;
-  }
-
-  .Logo img {
-    width: 10rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .Header {
-    height: 74px;
-    padding: 0 1rem;
   }
 
   .HeaderScrolled {
@@ -124,25 +84,54 @@
   }
 
   .HeaderInner {
-    gap: 1rem;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
   }
 
   .Logo img {
-    width: 8.8rem;
+    height: 36px;
   }
 }
 
-@media (max-width: 480px) {
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
   .Header {
-    height: 68px;
-    padding: 0 0.9rem;
+    height: 70px;
+    padding: 0 1rem;
   }
 
   .HeaderScrolled {
     height: 64px;
   }
 
+  .HeaderInner {
+    gap: 1rem;
+    padding: 0 0.25rem;
+  }
+
   .Logo img {
-    width: 7.8rem;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Header {
+    height: 64px;
+    padding: 0 0.75rem;
+  }
+
+  .HeaderScrolled {
+    height: 60px;
+  }
+
+  .Logo img {
+    height: 28px;
+  }
+
+  .HeaderInner {
+    gap: 0.75rem;
   }
 }
